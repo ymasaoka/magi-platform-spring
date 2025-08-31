@@ -1,0 +1,26 @@
+{
+    "name": "Magi system by Spring Boot",
+    "image": "mcr.microsoft.com/vscode/devcontainers/java:1-21-bookworm",
+    "features": {
+        "ghcr.io/devcontainers/features/java:1": {
+            "version": "21",
+            "installMaven": true,
+            "installGradle": false
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "vmware.vscode-dev-pack",
+                "GitHub.copilot",
+                "GitHub.copilot-chat",
+                "ms-azuretools.azure-dev",
+                "ms-azuretools.vscode-bicep",
+                "ms-edgedevtools.vscode-edge-devtools",
+                "vmware.vscode-boot-dev-pack",
+                "vmware.vscode-spring-boot",
+                "vscjava.vscode-spring-initializr"
+            ]
+        }
+    }
+}

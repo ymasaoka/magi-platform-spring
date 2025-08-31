@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-MagiSystemApplication<magisystem>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "jp.mappiekochi.sample.magisystem.core.MagiSystemApplication",
+            "projectName": "magisystem",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
