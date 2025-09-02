@@ -2,11 +2,21 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Spring Boot-MagiSystemApplication<magisystem>",
+            "name": "Spring Boot-MagiSystemApplication<magisystem-core>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "mainClass": "jp.mappiekochi.sample.magisystem.core.MagiSystemApplication",
-            "projectName": "magisystem",
+            "projectName": "magisystem-core",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-MagiSystemBffApplication<magisystem-bff>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "jp.mappiekochi.sample.magisystem.bff.MagiSystemBffApplication",
+            "projectName": "magisystem-bff",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
         }
