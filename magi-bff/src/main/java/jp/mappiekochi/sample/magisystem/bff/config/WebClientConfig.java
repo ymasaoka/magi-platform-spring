@@ -10,8 +10,8 @@ public class WebClientConfig {
 
     private final String coreBaseUrl;
 
-    // public WebClientConfig(@Value("${magi.core.base-url:http://localhost:8081}") String coreBaseUrl) {
-    public WebClientConfig(@Value("${magi.core.base-url}") String coreBaseUrl) {
+    // public WebClientConfig(@Value("${magi.core.base-url}") String coreBaseUrl) {
+    public WebClientConfig(@Value("${bff.core.base-url}") String coreBaseUrl) {
         this.coreBaseUrl = coreBaseUrl;
     }
 

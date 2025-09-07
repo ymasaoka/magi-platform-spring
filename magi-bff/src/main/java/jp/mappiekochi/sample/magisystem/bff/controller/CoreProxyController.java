@@ -20,12 +20,9 @@ public class CoreProxyController {
     private final WebClient webClient;
     private final String coreBase;
 
-    public CoreProxyController(WebClient.Builder webClientBuilder,
-                            //    @Value("${bff.core.base-url:http://localhost:8081/api/magi}") String coreBase) {
-                             @Value("${bff.core.base-url}") String coreBase) {
-        this.webClient = webClientBuilder
-                .baseUrl(coreBase)
-                .build();
+    public CoreProxyController(WebClient coreWebClient,
+                               @Value("${bff.core.base-url}") String coreBase) {
+        this.webClient = coreWebClient;
         this.coreBase = coreBase;
     }
 
@@ -61,7 +58,7 @@ public class CoreProxyController {
                         .defaultIfEmpty("Server error from core")
                         .flatMap(msg -> Mono.error(new ResponseStatusException(HttpStatus.BAD_GATEWAY, msg))))
                 .toEntity(String.class)
-                .timeout(Duration.ofSeconds(10))
+                .timeout(Duration.ofSeconds(60))
                 .map(entity -> {
                     // 可能なら元のステータス・ヘッダをそのまま返す
                     HttpHeaders responseHeaders = new HttpHeaders();

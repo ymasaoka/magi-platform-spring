@@ -1,0 +1,50 @@
+.final-decision {
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+.decision-yes {
+  background-color: #d4edda;
+  border: 2px solid #28a745;
+  color: #155724;
+}
+
+.decision-no {
+  background-color: #f8d7da;
+  border: 2px solid #dc3545;
+  color: #721c24;
+}
+
+.decision-tie {
+  background-color: #fff3cd;
+  border: 2px solid #ffc107;
+  color: #856404;
+}
+
+.vote-counts {
+  font-size: 1.1rem;
+}
+
+.card {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.vote-page {
+  background-color: #ffffff;
+  color: #000000;
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  padding-top: 1rem;
+}
+
+.vote-page .card {
+  background-color: #fff;
+  color: inherit;
+}
