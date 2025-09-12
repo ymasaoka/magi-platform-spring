@@ -21,7 +21,7 @@ public class CoreProxyController {
     private final String coreBase;
 
     public CoreProxyController(WebClient coreWebClient,
-                               @Value("${bff.core.base-url}") String coreBase) {
+                               @Value("${magi.core.base-url}") String coreBase) {
         this.webClient = coreWebClient;
         this.coreBase = coreBase;
     }
@@ -30,7 +30,7 @@ public class CoreProxyController {
     public ResponseEntity<String> vote(@RequestBody String body,
                                        @RequestHeader HttpHeaders incomingHeaders) {
         // ログに最低限の情報のみ出す（本番では機密漏洩に注意）
-        logger.debug("Forwarding POST /magi/vote to core: {}", coreBase + "/vote");
+        logger.debug("Forwarding POST /api/magi/vote to core: {}", coreBase + "/vote");
 
         // 転送するヘッダーを作る（必要なものだけコピー）
         return webClient.post()
