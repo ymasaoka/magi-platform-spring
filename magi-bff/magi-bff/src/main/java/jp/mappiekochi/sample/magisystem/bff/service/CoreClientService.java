@@ -32,7 +32,7 @@ public class CoreClientService {
     public CoreClientService(WebClient coreWebClient,
                              DaprClient daprClient,
                              TokenExchangeService tokenExchangeService,
-                             @Value("${magi.core.scope}") String coreScope,
+                             @Value("${azure.client.aud.scope}") String coreScope,
                              @Value("${magi.core.use-dapr:false}") boolean useDapr,
                              @Value("${magi.core.dapr-app-id:magi-core}") String daprAppId) {
         this.coreWebClient = coreWebClient;
