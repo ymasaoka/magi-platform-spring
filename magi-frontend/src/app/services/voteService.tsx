@@ -6,12 +6,10 @@ import { getAccessToken } from "./authService";
  * Calls the backend API that performs the majority vote.
  */
 export async function majorityVote(voteOption: VoteOption): Promise<MagiResponse> {
-  // サーバサイド（SSR）実行時は絶対URLでの呼び出しは期待通り動かない可能性があるのでクライアント限定にする
   if (typeof window === "undefined") {
     throw new Error("majorityVote must be called from the browser (client-side).");
   }
 
-  // ビルド時に埋められた VITE_API_BASE を優先（例: http://magi-bff）
   const envBase = (import.meta.env.VITE_API_BASE as string) || "";
   const apiBase = envBase.replace(/\/+$/g, ""); // 末尾スラッシュ削除
   const url = apiBase ? `${apiBase}/api/core/magi/vote` : "/api/core/magi/vote";
