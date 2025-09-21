@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { FinalDecisionEnum } from "../types/magi";
 import type { MagiResponse, VoteOption } from "../types/magi";
 import { majorityVote } from "../services/voteService";
@@ -11,7 +11,7 @@ export function Vote() {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [voteResult, setVoteResult] = useState<MagiResponse | null>(null);
 
-    const submitVote = async (e?: React.FormEvent) => {
+    const submitVote = async (e?: FormEvent) => {
         e?.preventDefault();
         if (!topic.trim() || !yesCriteria.trim() || !noCriteria.trim()) return;
 
