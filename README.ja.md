@@ -151,6 +151,21 @@ VITE_API_PROXY_TARGET=http://localhost:8080
 npm run dev
 ```
 
+### 5. MAGI システムにアクセス
+
+ブラウザで http://localhost:5173/vote にアクセスし、MAGI システムが表示されることを確認します。  
+
+![magi-home.png](./docs/images/magi-home.png)
+
+MAGI システムに審議してほしいことを入力し、`投票開始` ボタンを選択します。  
+Microsoft アカウントの認証情報入力のポップアップが起動します。(すでに本アプリで認証済みの場合は SSO されます)
+
+![magi-popup-entraid-auth.png](./docs/images/magi-popup-entraid-auth.png)
+
+認証が完了し、MAGI システム (Azure OpenAI) が回答を作成すると、画面下部に投票結果が表示されます。  
+
+![magi-vote-result.gif](./docs/images/magi-vote-result.gif)
+
 ## 技術スタック
 
 - Java (21 LTS)
@@ -163,10 +178,10 @@ npm run dev
 
 ## ライセンス
 
-このプロジェクトは AGPLv3 ライセンスの下でライセンスされています - 詳細は [LICENSE ファイル](./LICENSE) を参照してください。
+このプロジェクトは MIT ライセンスの下でライセンスされています - 詳細は [LICENSE ファイル](./LICENSE) を参照してください。
 
 ## 参考リポジトリ
 
-このリポジトリは、下記のリポジトリで公開された内容をベースに、Java および Spring AI による改良がなされています。
+このリポジトリは、下記のリポジトリで公開された内容を参考に、Java および Spring AI 、React Router v7 による改良を行いました。
 
 - [07JP27/MagiSystem](https://github.com/07JP27/MagiSystem)
