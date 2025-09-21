@@ -6,27 +6,31 @@ import { getAccessToken } from "./authService";
  * Calls the backend API that performs the majority vote.
  */
 export async function majorityVote(voteOption: VoteOption): Promise<MagiResponse> {
-  // SSR で呼ばれた場合は明確に失敗させて原因を切り分ける
+  // サーバサイド（SSR）実行時は絶対URLでの呼び出しは期待通り動かない可能性があるのでクライアント限定にする
   if (typeof window === "undefined") {
     throw new Error("majorityVote must be called from the browser (client-side).");
   }
 
-  // MSAL を用いてアクセストークンを取得（スコープは必要に応じて調整）
+  // ビルド時に埋められた VITE_API_BASE を優先（例: http://magi-bff）
+  const envBase = (import.meta.env.VITE_API_BASE as string) || "";
+  const apiBase = envBase.replace(/\/+$/g, ""); // 末尾スラッシュ削除
+  const url = apiBase ? `${apiBase}/api/core/magi/vote` : "/api/core/magi/vote";
+
+  // 既存のトークン取得処理を使用
   const token = await getAccessToken();
 
-  // const res = await fetch("/api/magi/vote", {
-  const res = await fetch("/api/core/magi/vote", {
+  const res = await fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`,
+      ...(token ? { "Authorization": `Bearer ${token}` } : {}),
     },
     body: JSON.stringify(voteOption),
   });
 
   if (!res.ok) {
     const text = await res.text();
-    throw new Error(text || `Request failed with status ${res.status}`);
+    throw new Error(text || `Request failed: ${res.status}`);
   }
 
   const data = await res.json();

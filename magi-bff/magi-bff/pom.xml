@@ -28,6 +28,7 @@
 	</scm>
 	<properties>
 		<java.version>21</java.version>
+		<dapr.version>1.9.0</dapr.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -50,6 +51,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
+		</dependency>
+		<!-- Dapr -->
+		<dependency>
+			<groupId>io.dapr</groupId>
+			<artifactId>dapr-sdk</artifactId>
+			<version>${dapr.version}</version>
 		</dependency>
 
 		<dependency>

@@ -4,13 +4,20 @@ import { defineConfig, loadEnv } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig(({ mode }) => {
-  // .env*, .env.local を読み込む（VITE_ プレフィックスを期待）
   const env = loadEnv(mode, process.cwd());
-  const apiTarget = env.VITE_API_PROXY_TARGET;
+  const apiProxyTarget = env.VITE_API_PROXY_TARGET || process.env.VITE_API_PROXY_TARGET;
+  const apiBaseForClient = env.VITE_API_BASE || process.env.VITE_API_BASE;
 
-  if (!apiTarget) {
+  if (mode === "development" && !apiProxyTarget) {
     throw new Error(
-      "VITE_API_PROXY_TARGET is not set. Create .env.local with VITE_API_PROXY_TARGET=<your-backend-url>"
+      "VITE_API_PROXY_TARGET is not set for development. Create .env.local with VITE_API_PROXY_TARGET=http://localhost:8080"
+    );
+  }
+
+  if (mode !== "development" && !apiBaseForClient) {
+    console.warn(
+      "VITE_API_BASE is not set for non-development. Build will embed an empty API base. " +
+      "Pass --build-arg VITE_API_BASE=... during build if client needs an absolute URL."
     );
   }
 
@@ -20,14 +27,17 @@ export default defineConfig(({ mode }) => {
       reactRouter(),
       tsconfigPaths(),
     ],
-    server: {
+    server: mode === "development" ? {
       proxy: {
         "/api": {
-          target: apiTarget,
+          target: apiProxyTarget,
           changeOrigin: true,
           secure: false,
         }
       }
-    }
+    } : {},
+    define: {
+      __API_BASE__: JSON.stringify(apiBaseForClient || ""),
+    },
   };
 });
