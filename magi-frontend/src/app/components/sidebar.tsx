@@ -8,7 +8,7 @@ export default function Sidebar() {
       aria-label="Sidebar"
     >
       <NavLink to="/" className="d-flex align-items-center mb-3 text-decoration-none">
-        <span className="fs-4">Magi</span>
+        <span className="fs-4">MAGI</span>
       </NavLink>
       <hr />
       <ul className="nav nav-pills flex-column">
