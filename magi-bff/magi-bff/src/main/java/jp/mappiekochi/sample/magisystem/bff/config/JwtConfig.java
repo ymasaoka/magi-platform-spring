@@ -5,22 +5,31 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.oauth2.core.*;
 import org.springframework.security.oauth2.jwt.*;
+import org.springframework.beans.factory.annotation.Value;
 
 @Configuration
 public class JwtConfig {
 
-    private static final String TENANT = "58b3dae2-fc4f-431f-a033-090ce281f42c";
-    private static final String EXPECTED_AUD_API = "api://bc98cd63-de49-4c9d-9664-fc9d14f8ce60";
-    private static final String EXPECTED_AUD_CLIENTID = "bc98cd63-de49-4c9d-9664-fc9d14f8ce60";
+    @Value("${azure.client.tenant-id}")
+    private String tenant;
+
+    @Value("${azure.client.id}")
+    private String azureClientId;
+
+    @Value("${azure.client.aud.scope}")
+    private String expectedAudApi;
+
+    @Value("${azure.client.aud.id}")
+    private String expectedAudClientId;
 
     @Bean
     public JwtDecoder jwtDecoder() {
         NimbusJwtDecoder jwtDecoder = (NimbusJwtDecoder)
-            JwtDecoders.fromOidcIssuerLocation("https://login.microsoftonline.com/" + TENANT + "/v2.0");
+            JwtDecoders.fromOidcIssuerLocation("https://login.microsoftonline.com/" + tenant + "/v2.0");
 
         OAuth2TokenValidator<Jwt> issuerValidator = token -> {
             String iss = token.getIssuer() != null ? token.getIssuer().toString() : "";
-            String url = "https://login.microsoftonline.com/" + TENANT + "/v2.0";
+            String url = "https://login.microsoftonline.com/" + tenant + "/v2.0";
             if (url.equals(iss)) {
                 return OAuth2TokenValidatorResult.success();
             }
@@ -30,11 +39,11 @@ public class JwtConfig {
         OAuth2TokenValidator<Jwt> audienceValidator = token -> {
             Object aud = token.getClaims().get("aud");
             if (aud instanceof String) {
-                if (EXPECTED_AUD_API.equals(aud) || EXPECTED_AUD_CLIENTID.equals(aud)) {
+                if (expectedAudApi.equals(aud) || expectedAudClientId.equals(aud)) {
                     return OAuth2TokenValidatorResult.success();
                 }
             } else if (aud instanceof Collection) {
-                if (((Collection<?>)aud).contains(EXPECTED_AUD_API) || ((Collection<?>)aud).contains(EXPECTED_AUD_CLIENTID)) {
+                if (((Collection<?>)aud).contains(expectedAudApi) || ((Collection<?>)aud).contains(expectedAudClientId)) {
                     return OAuth2TokenValidatorResult.success();
                 }
             }
