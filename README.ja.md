@@ -182,6 +182,6 @@ Microsoft アカウントの認証情報入力のポップアップが起動し�
 
 ## 参考リポジトリ
 
-このリポジトリは、下記のリポジトリで公開された内容を参考に、Java および Spring AI 、React Router v7 による改良を行いました。
+このリポジトリは、下記のリポジトリで公開された内容を参考に、Java および Spring AI 、React Router v7 による改良を行ったものです。  
 
 - [07JP27/MagiSystem](https://github.com/07JP27/MagiSystem)
