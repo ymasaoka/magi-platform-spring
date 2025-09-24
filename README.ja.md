@@ -148,6 +148,8 @@ VITE_API_PROXY_TARGET=http://localhost:8080
 `.env.local` ファイルを作成したら、React Router v7 アプリを起動します。  
 
 ```bash
+cd magi-frontend/src/
+npm install
 npm run dev
 ```
 
