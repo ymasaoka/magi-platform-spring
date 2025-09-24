@@ -37,7 +37,7 @@ _※本 README は Dev Container 環境での実行を前提に記述してい�
 
 ### 1. magi-core の起動
 
-[magi-core](./magi-core/magi-core/) ディレクトリ配下に `.env` ファイルを作成します。  
+[magi-core](./magi-core/) ディレクトリ配下に `.env` ファイルを作成します。  
 アプリケーションのポート設定、および Azure OpenAI Service や Azure AI Foundry 上でデプロイしているモデルへのアクセス情報を設定します。
 
 ```text:magi-core/magi-core/.env
@@ -98,7 +98,7 @@ magi-bff で使用する OIDC 認証用のサービスプリンシパルを作�
 
 ### 3. magi-bff の起動
 
-[magi-bff](./magi-bff/magi-bff/) ディレクトリ配下に `.env` ファイルを作成します。  
+[magi-bff](./magi-bff/) ディレクトリ配下に `.env` ファイルを作成します。  
 
 ```text:magi-bff/magi-bff/.env
 SERVER_PORT=8080
