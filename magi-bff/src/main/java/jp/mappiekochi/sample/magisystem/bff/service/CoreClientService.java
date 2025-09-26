@@ -13,7 +13,6 @@ import io.dapr.client.domain.InvokeMethodRequest;
 import io.dapr.client.domain.HttpExtension;
 import io.dapr.utils.TypeRef;
 import reactor.core.publisher.Mono;
-import reactor.core.scheduler.Schedulers;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.beans.factory.annotation.Value;
 
