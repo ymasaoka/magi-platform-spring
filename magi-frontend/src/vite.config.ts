@@ -35,9 +35,6 @@ export default defineConfig(({ mode }) => {
           secure: false,
         }
       }
-    } : {},
-    define: {
-      __API_BASE__: JSON.stringify(apiBaseForClient || ""),
-    },
+    } : {}
   };
 });
